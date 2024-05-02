@@ -3,8 +3,34 @@
 // This is example code from Chapter 8.3 "Header Files" of
 // "Programming -- Principles and Practice Using C++" by Bjarne Stroustrup
 //
+#include "vec3.h"
 #include "std_lib_facilities.h"
 using namespace std;
+
+
+// A
+
+class Pixel {
+public:
+    Pixel(int positionx, int positiony, const vec3& color)
+        : positionx(positionx), positiony(positiony), color(color) {}
+    
+    // setters
+    void set_positionx(int x) { positionx = x; }
+    void set_positiony(int y) { positiony = y; }
+    void set_color(const vec3& c) { color = c; }
+    // getters
+    int get_positionx() const { return positionx; }
+    int get_positiony() const { return positiony; }
+    vec3 get_color() const { return color; }
+private:
+    int positionx;
+    int positiony;
+    vec3 color;
+};
+
+
+
 
 int main()
 {
