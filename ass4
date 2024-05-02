@@ -1,10 +1,8 @@
-
-//
-// This is example code from Chapter 8.3 "Header Files" of
-// "Programming -- Principles and Practice Using C++" by Bjarne Stroustrup
-//
 #include "vec3.h"
 #include "std_lib_facilities.h"
+#include <vector>
+#include <string>
+#include <fstream>
 using namespace std;
 
 
@@ -29,10 +27,59 @@ private:
     vec3 color;
 };
 
+// B
 
+class ImageData {
+public:
+    ImageData(const std::string& filename) {
+        read_PPM(filename);
+    }
+    // setters
+    void set_width(int w) { width = w; }
+    void set_height(int h) { height = h; }
+
+    // getters
+    int get_width() const { return width; }
+    int get_height() const { return height; }
+    vector<vector<Pixel>> get_image() const { return image; }
+
+private:
+    vector<vector<Pixel>> image;
+    int width;
+    int height;
+
+    void read_PPM(const string& filename) {
+        ifstream file(filename);
+        if (!file.is_open()) {      
+            return;
+        }
+
+
+        file >> width >> height;
+        image.resize(height, vector<Pixel>(width));
+
+        int max_value;
+        file >> max_value;
+
+       for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+        int r, g, b;
+        file >> r >> g >> b; 
+        // creating a vec3 object for the color
+        vec3 color(r, g, b);
+        // creating a Pixel object with position and color
+        image[y][x] = Pixel(x, y, color);
+    }
+  }
+
+        file.close();
+    }
+};
 
 
 int main()
 {
   
 }
+
+
