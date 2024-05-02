@@ -1,0 +1,12 @@
+
+//
+// This is example code from Chapter 8.3 "Header Files" of
+// "Programming -- Principles and Practice Using C++" by Bjarne Stroustrup
+//
+#include "std_lib_facilities.h"
+using namespace std;
+
+int main()
+{
+  
+}
